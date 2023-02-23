@@ -12,27 +12,29 @@
     <h1> Danh sách sản phẩm </h1>
     <form action="" method="$_POST">
         <table border="1">
-            <tr>
+            <tr><td>ID</td>
                 <td>Tên sản phẩm</td>
                 <td>Giá tiền</td>
                 <td>Mô tả</td>
                 <td>Hình ảnh</td>
+                <td > Action </td>
             </tr>
-            
     </form>
     <?php
         
     if (isset($_SESSION["traicay"])){
     $dem=count($_SESSION["traicay"]);
     for($i=0;$i<$dem;$i++){
-    
+        $i += 1;
+
     ?>
     <tr>
+        <td><?php echo $i;?></td>
         <td><?php echo $_SESSION ["traicay"][$i]["name"];?></td>
         <td><?php echo $_SESSION ["traicay"][$i]["gia"];?></td>
         <td><?php echo $_SESSION ["traicay"][$i]["mota"];?></td>
         <td> <img src="<?php echo  $_SESSION ["traicay"][$i]["hinhanh"];?>" height =60 , width =60></td>
-        <td> <a href ="Xoa_Phan_tu_mang =<?php echo $i ?>"  >xóa </a> </td>
+        <td> <a href ="deletesession.php" > xóa  </a> </td>
     </tr>
    <?php
 }
@@ -40,5 +42,5 @@
     //unset($_SESSION["traicay"]);
 ?> 
 
-<a href ="http://localhost/BT_PHP/arrsession.php" > Nhập Tiếp </a>
+<a href ="arrsession.php" > Nhập Tiếp </a>
 </div>
