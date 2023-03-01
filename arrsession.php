@@ -12,7 +12,7 @@
 <body>
     <div>
         <h1> Nhập thông tin sản phẩm</h1>
-        <form method="post" action="">
+        <form method="post" action="" enctype="multipart/form-data">
             Tên Sản phẩm
             <input type="text" name="name" value="" placeholder="Nhập tên sản phẩm" />
             <br>
@@ -26,7 +26,7 @@
             <br>
             <br>
             Hình ảnh
-            <input type="text" name="hinhanh" value="" placeholder="Nhập chữ" />
+            <input type="file" name="hinhanh" value="upload" placeholder="Nhập chữ" />
             <br>
             <br>
             <input type="submit" name="btn" value="lưu" />
@@ -41,9 +41,15 @@
                 $_SESSION["traicay"][$n]["name"] = $_POST["name"];
                 $_SESSION["traicay"][$n]["gia"] = $_POST["gia"];
                 $_SESSION["traicay"][$n]["mota"] = $_POST["mota"];
-                $_SESSION["traicay"][$n]["hinhanh"] = $_POST["hinhanh"];
-                header("location: arrsession1.php");
+                
+                if(isset($_FILES['tep'])){
+                    $file=$_FILES['tep'];
+                    $tenfile=$file['name'];
+                    move_uploaded_file($file['tmp_name'],$tenfile);
+                    $_SESSION["traicay"][$n]["hinhanh"] = $tenfile;
+                   }
+                    header("location: arrsession1.php");
         }
- 
+        
         ?>
     </div>
